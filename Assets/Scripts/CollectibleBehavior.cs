@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class CollectibleBehavior : MonoBehaviour
 {
+    private GameManager gm;
+
+    private void Start()
+    {
+        gm = FindObjectOfType<GameManager>();
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-            Destroy(this.gameObject);
+            gm.IncrementCollectibles();
+            Destroy(this.gameObject, 0.1f);
         }
     }
 }
